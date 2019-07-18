@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class HelloWorld
+public class quickSortInPlaceDemo
 {
 
      public static void main(String []args){
