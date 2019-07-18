@@ -1,0 +1,59 @@
+import java.util.Comparator;
+
+public class HelloWorld
+{
+
+     public static void main(String []args){
+        Integer[] arr = { 2,16,9,0,46,76,123,6543,35,87,35,178};
+        qS(arr, comp ,0,arr.length - 1);
+        for (int num : arr)
+        {
+            System.out.print(num + " ");
+        }
+     }
+
+     public static <K> void quickSortInPlace(K[] S, Comparator<K> comp, int a , int b)
+     {
+         if (a >= b) return;
+         int left = a;
+         int right = b - 1;
+         K pivot = S[b];
+         K temp;
+         
+         while(left <= right)
+         {
+             while(left <= right && comp.compare(S[left], pivot) < 0)
+             {
+                 left++;
+             }
+             while(left <= right && comp.compare(S[right],pivot) > 0)
+             {
+                 right--;
+             }
+             if (left <= right)
+             {
+                 temp = S[left];
+                 S[left]= S[right];
+                 S[right] = temp;
+                 left++;
+                 right--;
+             }
+         }
+         temp = S[left]; S[left] = S[b]; S[b] = temp;
+         quickSortInPlace(S, comp, a, left - 1);
+         quickSortInPlace(S, comp, left + 1, b);
+     }
+
+
+    static Comparator<Integer> comp = new Comparator<Integer>() 
+    {
+    
+        public int compare(Integer a, Integer b) {
+            return a.intValue() - b.intValue();
+        }
+    
+        public boolean equals(Object obj) {
+            return this.equals(obj);
+        }
+    };
+}
